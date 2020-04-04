@@ -1,9 +1,9 @@
 import express from 'express';
 
+import DoctorController from './app/controllers/DoctorController';
+
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ok:true});
-})
+routes.post('/doctors', DoctorController.store);
 
 export default routes;
