@@ -1,0 +1,90 @@
+.register-container{
+  width: 100%;
+  max-width: 1120px;
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-container .content{
+  width: 100%;
+  height: 577px;
+  padding: 96px;
+  background-color: #f0f0f5;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.register-container .content section{
+  width: 100%;
+  max-width: 380px;
+} 
+.register-container .content section h1{
+  margin: 64px 0 32px; 
+  font-size: 32px;
+}
+.register-container .content section p{
+  font-size: 18px;
+  color: #737380;
+  line-height: 32px;
+}
+.register-container .seleciona{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.quadradopacient{
+width: 216px;
+height: 216px;
+background: rgba(77, 232, 130, 0.8);
+border-radius: 10px;
+margin-left: 56px;
+text-decoration: none;
+}
+.quadradopacient p{
+width: 116px;
+height: 36px;
+font-family: Roboto;
+font-style: normal;
+font-weight: 900;
+font-size: 25px;
+line-height: 36px;
+color: #13131A;
+margin: auto;
+}
+.quadradopacient img{
+width: 168px;
+height: 139px;
+margin-left: 30px;
+margin-top: 30px;
+}
+.quadradomedico{
+  width: 216px;
+  height: 216px;
+  background: rgba(6, 114, 138, 0.5);
+  border-radius: 10px;
+  margin-left: 56px;
+  }
+  .quadradomedico p{
+  width: 116px;
+  height: 36px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 25px;
+  line-height: 36px;
+  color: #13131A;
+  margin-left: 70px;
+  }
+  .quadradomedico img{
+  width: 168px;
+  height: 139px;
+  margin-left: 30px;
+  margin-top: 30px;
+  }
