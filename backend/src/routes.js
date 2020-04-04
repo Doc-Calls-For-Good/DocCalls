@@ -1,9 +1,9 @@
 import express from 'express';
 
-import DoctorController from './app/controllers/DoctorController';
+import UserController from './app/controllers/UserController';
 
 const routes = express.Router();
 
-routes.post('/doctors', DoctorController.store);
+routes.post('/users/:type', UserController.store);
 
 export default routes;

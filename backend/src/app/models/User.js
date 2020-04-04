@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Doctor extends Model {
+class User extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -11,6 +11,7 @@ class Doctor extends Model {
         city: Sequelize.STRING,
         uf: Sequelize.STRING,
         specialty: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -19,4 +20,4 @@ class Doctor extends Model {
   }
 }
 
-export default Doctor;
+export default User;
