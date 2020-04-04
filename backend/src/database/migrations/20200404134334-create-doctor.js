@@ -4,5 +4,5 @@ module.exports = {
     id: Sequelize.INTEGER,
   }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('users'),
+  down: (queryInterface) => queryInterface.dropTable('users'),
 };
