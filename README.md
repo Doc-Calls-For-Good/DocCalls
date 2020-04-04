@@ -9,20 +9,19 @@
 
 ## 💻 Projeto
 
-<p><strong>Problema/dor:</strong> Pessoas ter que se deslocar até a clínica/hospital para fazer uma consulta de rotina, consulta simples ou consulta psiquiátrica/pisicologica, correndo risco de contaminação no trajeto ou até mesmo na sala de espera.</p>
+<p><strong>Problema/dor:</strong> Pessoas terem que se deslocar até a clínica/hospital para fazer uma consulta de rotina, consulta simples ou consulta psiquiátrica/pisicologica, correndo risco de contaminação no trajeto ou até mesmo na sala de espera.</p>
 <p>
 Esse isolamento social também está agravando casos de depressão.
 </p>
-
-<p><strong>Solução:</strong> Criação de um web/app de vídeo chamada de consultas e o médico(a) vai poder fazer a avaliação inicial do paciente e poder então decidir se é necessário o deslocamento do mesmo até a clínica/hospital, no caso de psiquiatra/psicólogo(a) todo o tratamento pode ser feito por vídeo chamada.</p>
+<p><strong>Solução:</strong> Uma plataforma em web/app de vídeo chamada de consultas onde o médico(a) vai poder fazer a avaliação inicial do paciente e poder então decidir se é necessário o deslocamento do mesmo até a clínica/hospital, no caso de psiquiatra/psicólogo(a) todo o tratamento pode ser feito por vídeo chamada.</p>
 <p>
-O médico vai se cadastrar na plataforma e também os seus pacientes, para confirmar e agendar as consultas será enviado um email.</p>
+O médico(a) vai se cadastrar na plataforma e também os seus pacientes, para a confirmação e agendamento das consultas será enviado um email, a ambos</p>
 <p>
-Planos de Saúde também podem usar como uma pré consulta e triagem evitando filas nos hospitais da rede.</p>
+Planos de Saúde também poderão usar como uma pré consulta e triagem evitando filas nos hospitais da rede.</p>
 <p>
-Os profissionais também poderiam ser contactados por pessoas e agendar consultas diretamente entre eles através da plataforma.</p>
+Os profissionais também poderão ser contactados pelas pessoas e agendar consultas diretamente entre eles através da plataforma.</p>
 <p>
-Após a consulta o paciente poderá atribuir uma nota ao profissional e comentar o que achou da experiência, ajudando assim outras pessoas a escolherem o mesmo profissional.
+Após a consulta o paciente poderá atribuir uma nota ao profissional e comentar o que achou da experiência, ajudando assim outras pessoas na escolha do mesmo.
 </p>
 
 
