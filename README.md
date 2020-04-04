@@ -12,29 +12,29 @@
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-## 💻 Project
+## 💻 Projeto
 
-Problema/dor: Pessoas ter que se deslocar até a clínica/hospital para fazer uma consulta de rotina, consulta simples ou consulta psiquiatrica/pisicologica, correndo risco de contaminação no trajeto ou até mesmo na sala de espera. Esse isolamento social também está agravando casos de depressão.
+<p><strong>Problema/dor:</strong> Pessoas ter que se deslocar até a clínica/hospital para fazer uma consulta de rotina, consulta simples ou consulta psiquiatrica/pisicologica, correndo risco de contaminação no trajeto ou até mesmo na sala de espera. Esse isolamento social também está agravando casos de depressão.</p>
 
-Solução: Criação de um web/app de vídeo chamada de consultas o médico(a) vai poder fazer a avaliação inicial do paciente e poder então decidir se é necessário o deslocamento do mesmo até a clínica/hospital, no caso de psiquiatra/psicólogo(a) todo o tratamento pode ser feito por vídeo chamada. O médico vai se cadastrar na plataforma e também os seus pacientes, o sistema vai usar o autopilot para confirmar e agendar as consultas por email e sms. Planos de Saúde também podem usar como uma pré consulta e triagem evitando filas nos hospitais da rede. Pelo conversations o profissional vai poder responder a quase todas as plataformas de comunicação. Todo o sistema vai ser validado com short codes. Os profissionais também poderiam ser contactados por pessoas e agendar consultas diretamente entre eles através da plataforma.
+<p><strong>Solução:</strong> Criação de um web/app de vídeo chamada de consultas o médico(a) vai poder fazer a avaliação inicial do paciente e poder então decidir se é necessário o deslocamento do mesmo até a clínica/hospital, no caso de psiquiatra/psicólogo(a) todo o tratamento pode ser feito por vídeo chamada. O médico vai se cadastrar na plataforma e também os seus pacientes, o sistema vai usar o autopilot para confirmar e agendar as consultas por email e sms. Planos de Saúde também podem usar como uma pré consulta e triagem evitando filas nos hospitais da rede. Pelo conversations o profissional vai poder responder a quase todas as plataformas de comunicação. Todo o sistema vai ser validado com short codes. Os profissionais também poderiam ser contactados por pessoas e agendar consultas diretamente entre eles através da plataforma.</p>
 
 <h1 align="center">
     <img alt="Login-Page" title="Login-Page" src="./frontend/src/assets/preview.jpg" width="500px" />
 </h1>
 
 
-## :rocket: Technologies
+## :rocket: Tecnologias
 
-This project was developed with the following technologies:
+Este projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Node.js](https://nodejs.org/en/) 
 - [React](https://reactjs.org)
 
 ## 🔖 Layout
 
-Para acessar o layout utilize a ferramenta [Figma](https://www.figma.com/file/2C2yvw7jsCOGmaNUDftX9n/Be-The-Hero---OmniStack-11?node-id=0%3A1).
+Para acessar o layout utilize a ferramenta [Figma](https://www.figma.com/file/h3xeYk2L3eF13EWyPELSWA/Seu-M%C3%A9dico-Aqui?node-id=0%3A1).
 
 
 ---
 
-Made with by Hantonny Korrea :wave: [Get in touch!](https://www.linkedin.com/in/hantonny-korrea-2853911a0/)
+Feito por Hantonny Korrea: :wave: [Entrar em contato!](https://www.linkedin.com/in/hantonny-korrea-2853911a0/)
