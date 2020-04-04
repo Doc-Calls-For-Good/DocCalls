@@ -33,7 +33,7 @@ export default function ProfilePacient(){
           <p>10/04/2020 - 09:30</p>
 
           <strong className="strong_maior_pacient">Fazer Chamada de Vídeo</strong>
-          <Link>
+          <Link to="/video">
           <FiArrowRight size={35} color="#06728A"></FiArrowRight>
           </Link>
         </li>
