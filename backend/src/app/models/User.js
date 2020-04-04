@@ -12,6 +12,7 @@ class User extends Model {
         uf: Sequelize.STRING,
         specialty: Sequelize.STRING,
         type: Sequelize.INTEGER,
+        info: Sequelize.STRING,
       },
       {
         sequelize,

@@ -2,14 +2,11 @@ import { Op } from 'sequelize';
 import User from '../models/User';
 
 class UserController {
-  async store(req, res) {
-    /**
-     * type
-     * 0 - Médico
-     * 1 - Paciente
-     */
-    const { type } = req.params;
+  async index(req, res) {
+    return res.json(await User.findAll());
+  }
 
+  async store(req, res) {
     const exists = await User.findOne({
       where: {
         [Op.or]: [{ email: req.body.email }, { cpf: req.body.cpf }],
@@ -20,23 +17,15 @@ class UserController {
       return res.status(400).json({ error: 'Usuário já existente.' });
     }
 
-    const data = {
-      ...req.body,
-      type,
-    };
+    const result = await User.create(req.body);
 
-    const {
-      id,
-      name,
-      email,
-      cpf,
-      phone,
-      city,
-      uf,
-      specialty,
-    } = await User.create(data);
+    return res.json(result);
+  }
 
-    return res.json({ id, name, email, cpf, phone, city, uf, specialty, type });
+  async update(req, res) {
+    const user = await User.findByPk(req.userId);
+    const result = await user.update(req.body);
+    return res.json(result);
   }
 }
 
