@@ -1,16 +1,11 @@
 <h1 align="center">
-    <img alt="Seu Médico" title="#Seu Médico" src="./frontend/src/assets/logo.svg" width="250px" />
+    <img alt="Seu Médico Aqui" title="#Seu Médico Aqui" src="./frontend/src/assets/logo.svg" width="400px" />
 </h1>
 
 <h4 align="center"> 
-	:construction: Seu Médico Aqui em Contrução :construction:
+	:construction: Seu Médico Aqui em Construção :construction:
 </h4>
 
-<p align="center">
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-</p>
 
 ## 💻 Projeto
 
@@ -23,7 +18,7 @@
 </h1>
 
 
-## Tecnologias
+## 💻 Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
