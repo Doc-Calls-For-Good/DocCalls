@@ -1,13 +1,15 @@
 import React from 'react';
 import Routes from './routes';
-import './global.css';
 
-function App() {
-
+const App = () => {
   return (
-    <Routes/>
-  );
-}
+    <div>
+      <main>
+        <Routes />
+      </main>
 
+    </div>
+  );
+};
 
 export default App;

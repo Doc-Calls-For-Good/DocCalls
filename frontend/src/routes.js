@@ -9,6 +9,7 @@ import ProfileDoctor from './pages/Profile';
 import ProfilePacient from './pages/ProfilePacient';
 import NewPacient from './pages/NewPacient';
 import NewQuery from './pages/NewQuery';
+import Video from './pages/VideoChat';
 
 export default function Routes(){
   return(
@@ -22,6 +23,7 @@ export default function Routes(){
       <Route path="/profilepacient" component={ProfilePacient}/>
       <Route path="/pacients/new" component={NewPacient}/>
       <Route path="/query/new" component={NewQuery}/>
+      <Route path="/video" component={Video}/>
     </Switch>
     </BrowserRouter>
   );

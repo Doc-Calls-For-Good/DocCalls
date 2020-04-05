@@ -34,7 +34,7 @@ export default function Profile(){
           <p>10/04/2020 - 09:30</p>
 
           <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
-          <Link>
+          <Link to="/video">
           <FiArrowRight size={35} color="#06728A"></FiArrowRight>
           </Link>
 
@@ -53,7 +53,7 @@ export default function Profile(){
           <p>10/04/2020 - 09:30</p>
 
           <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
-          <Link>
+          <Link to="/video">
           <FiArrowRight size={35} color="#06728A"></FiArrowRight>
           </Link>
 
@@ -72,7 +72,7 @@ export default function Profile(){
           <p>10/04/2020 - 09:30</p>
 
           <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
-          <Link>
+          <Link to="/video">
           <FiArrowRight size={35} color="#06728A"></FiArrowRight>
           </Link>
 
@@ -91,7 +91,7 @@ export default function Profile(){
           <p>10/04/2020 - 09:30</p>
 
           <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
-          <Link>
+          <Link to="/video">
           <FiArrowRight size={35} color="#06728A"></FiArrowRight>
           </Link>
 
