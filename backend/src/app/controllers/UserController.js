@@ -3,6 +3,15 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
+    if (req.query.type) {
+      return res.json(
+        await User.findAll({
+          where: {
+            type: req.query.type,
+          },
+        })
+      );
+    }
     return res.json(await User.findAll());
   }
 
