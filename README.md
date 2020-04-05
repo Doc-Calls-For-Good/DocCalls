@@ -39,4 +39,4 @@ Para acessar o layout utilize a ferramenta [Figma](https://www.figma.com/file/h3
 
 ---
 
-Feito por Hantonny Korrea: :wave: [Entrar em contato!](https://www.linkedin.com/in/hantonny-korrea-2853911a0/)
+Feito por Alex Freitag, Alex Rossi e Hantonny Korrea: :wave:
