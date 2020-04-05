@@ -6,7 +6,7 @@ import User from '../models/User';
 class AppointmentController {
   async index(req, res) {
     const response = await Appointment.findAll({
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'info'],
       include: [
         {
           model: User,
