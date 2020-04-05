@@ -3,12 +3,13 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
-    if (req.query.type) {
+    const query = {};
+    if (req.query.type) query.type = req.query.type;
+    if (req.query.email) query.email = req.query.email;
+    if (query) {
       return res.json(
         await User.findAll({
-          where: {
-            type: req.query.type,
-          },
+          where: query,
         })
       );
     }
