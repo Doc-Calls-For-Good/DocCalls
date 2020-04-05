@@ -5,14 +5,18 @@ class Appointment extends Model {
     super.init(
       {
         date: Sequelize.DATE,
-        doctor_id: Sequelize.INTEGER,
-        pacient_id: Sequelize.INTEGER,
         info: Sequelize.STRING,
       },
       {
         sequelize,
       }
     );
+    return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'doctor_id', as: 'doctor' });
+    this.belongsTo(models.User, { foreignKey: 'pacient_id', as: 'pacient' });
   }
 }
 

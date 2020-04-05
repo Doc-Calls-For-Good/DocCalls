@@ -1,10 +1,26 @@
 import { parseISO } from 'date-fns';
 import { Op } from 'sequelize';
 import Appointment from '../models/Appointment';
+import User from '../models/User';
 
 class AppointmentController {
   async index(req, res) {
-    return res.json(await Appointment.findAll());
+    const response = await Appointment.findAll({
+      attributes: ['id', 'date'],
+      include: [
+        {
+          model: User,
+          as: 'doctor',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: User,
+          as: 'pacient',
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
+    return res.json(response);
   }
 
   async store(req, res) {
@@ -22,9 +38,9 @@ class AppointmentController {
         .json({ error: 'Já existe uma consulta agendada para esta data.' });
     }
 
-    // const result = await Appointment.create(req.body);
+    const result = await Appointment.create(req.body);
 
-    return res.json({ ok: true });
+    return res.json(result);
   }
 
   async update(req, res) {
