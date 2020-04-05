@@ -10,28 +10,35 @@ import api from '../../services/api';
 export default function ProfilePacient() {
   const [token, setToken] = useState('');
   const [id, setId] = useState(null);
-  const [data, setData] = useState([]);
+  const [name, setName] = useState('');
+  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     async function loadDoctors() {
       setToken(localStorage.getItem('token'));
       setId(localStorage.getItem('id'));
+      setName(localStorage.getItem('name'));
 
       if (token) {
-        const response = await api.get('users?type=1', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        console.log(response);
+        await api
+          .get('users?type=1', {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => setDoctors(res.data));
       }
     }
     loadDoctors();
   }, [token]);
 
+  useEffect(() => {
+    console.log(doctors);
+  }, [doctors]);
+
   return (
     <div className="profilepacient-container">
       <header>
         <img src={logoImg} alt="Seu Médico Aqui" />
-        <span>Bem vindo, Matheus!</span>
+        <span>Bem vindo, {name}!</span>
 
         <button type="button">
           <Link to="/">
@@ -78,34 +85,22 @@ export default function ProfilePacient() {
       </ul>
       <h1>Médicos Disponíveis</h1>
       <ul>
-        <li>
-          <strong>NOME:</strong>
-          <p>Luiza Martins Camargo</p>
+        {doctors.map((doctor) => (
+          <li key={doctor.id}>
+            <strong>NOME:</strong>
+            <p>{doctor.name}</p>
 
-          <strong>ESPECIALIDADE:</strong>
-          <p>Pediatria</p>
+            <strong>ESPECIALIDADE:</strong>
+            <p>{doctor.specialty}</p>
 
-          <strong className="strong_maior_pacient">Agendar Consulta</strong>
-          <div className="link">
-            <Link to="/query/new">
-              <FiArrowRight size={35} color="#06728A" />
-            </Link>
-          </div>
-        </li>
-        <li>
-          <strong>NOME:</strong>
-          <p>Luiza Martins Camargo</p>
-
-          <strong>ESPECIALIDADE:</strong>
-          <p>Pediatria</p>
-
-          <strong className="strong_maior_pacient">Agendar Consulta</strong>
-          <div className="link">
-            <Link to="/query/new">
-              <FiArrowRight size={35} color="#06728A" />
-            </Link>
-          </div>
-        </li>
+            <strong className="strong_maior_pacient">Agendar Consulta</strong>
+            <div className="link">
+              <Link to="/query/new">
+                <FiArrowRight size={35} color="#06728A" />
+              </Link>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );
