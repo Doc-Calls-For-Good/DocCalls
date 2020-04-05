@@ -9,14 +9,12 @@ import api from '../../services/api';
 
 export default function ProfilePacient() {
   const [token, setToken] = useState('');
-  const [id, setId] = useState(null);
   const [name, setName] = useState('');
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     async function loadDoctors() {
       setToken(localStorage.getItem('token'));
-      setId(localStorage.getItem('id'));
       setName(localStorage.getItem('name'));
 
       if (token) {
@@ -29,10 +27,6 @@ export default function ProfilePacient() {
     }
     loadDoctors();
   }, [token]);
-
-  useEffect(() => {
-    console.log(doctors);
-  }, [doctors]);
 
   return (
     <div className="profilepacient-container">
