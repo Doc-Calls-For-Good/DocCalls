@@ -1,11 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
+import api from '../../services/api';
+
 export default function RegisterPacient() {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [city, setCity] = useState('');
+  const [uf, setUf] = useState('');
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const data = { name, email, cpf, phone, city, uf, type: 0 };
+
+    const response = await api
+      .post('users', data)
+      .catch((err) => alert(err.response.data.error));
+
+    if (response) {
+      alert('Cadastro realizado com sucesso.');
+      history.push('/');
+    }
+  }
+
   return (
     <div className="register-container-pacient">
       <div className="content">
@@ -22,21 +47,44 @@ export default function RegisterPacient() {
             Voltar para a seleção de usuário
           </Link>
         </section>
-        <form>
-          <input placeholder="Nome" />
-          <input placeholder="Número de Telefone" />
-          <input placeholder="E-mail" />
-          <input placeholder="CPF" />
+        <form onSubmit={handleSubmit}>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nome"
+          />
+          <input
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Número de Telefone"
+          />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail"
+          />
+          <input
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
+            placeholder="CPF"
+          />
 
           <div className="input-group">
-            <input placeholder="Cidade" />
-            <input placeholder="UF" style={{ width: 80 }} />
+            <input
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="Cidade"
+            />
+            <input
+              value={uf}
+              onChange={(e) => setUf(e.target.value)}
+              placeholder="UF"
+              style={{ width: 80 }}
+            />
           </div>
-          <Link to="/profilepacient">
-            <button className="button" type="submit">
-              CADASTRAR
-            </button>
-          </Link>
+          <button className="button" type="submit">
+            CADASTRAR
+          </button>
         </form>
       </div>
     </div>

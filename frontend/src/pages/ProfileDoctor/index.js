@@ -10,22 +10,22 @@ import api from '../../services/api';
 export default function ProfileDoctor() {
   const [token, setToken] = useState('');
   const [name, setName] = useState('');
-  const [pacients, setPacients] = useState([]);
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    async function loadPacients() {
+    async function load() {
       setToken(localStorage.getItem('token'));
       setName(localStorage.getItem('name'));
 
       if (token) {
         await api
-          .get('users?type=0', {
+          .get('appointments', {
             headers: { Authorization: `Bearer ${token}` },
           })
-          .then((res) => setPacients(res.data));
+          .then((res) => setAppointments(res.data));
       }
     }
-    loadPacients();
+    load();
   }, [token]);
 
   return (
@@ -43,18 +43,18 @@ export default function ProfileDoctor() {
           </Link>
         </button>
       </header>
-      <h1>Pacientes cadastrados</h1>
+      <h1>Consultas agendadas</h1>
       <ul>
-        {pacients.map((pacient) => (
-          <li key={pacient.id}>
+        {appointments.map((appointment) => (
+          <li key={appointment.id}>
             <strong>NOME:</strong>
-            <p>{pacient.name}</p>
+            <p>{appointment.pacient.name}</p>
 
             <strong>QUADRO MÉDICO DO PACIENTE:</strong>
-            <p>{pacient.info}</p>
+            <p>{appointment.info}</p>
 
             <strong>CONSULTA AGENDADA PARA: </strong>
-            <p>10/04/2020 - 09:30</p>
+            <p>{appointment.date}</p>
 
             <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
             <Link to="/video">
