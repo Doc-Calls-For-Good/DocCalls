@@ -18,7 +18,6 @@ export default function Logon(){
     e.preventDefault();
    
     const response = await api.post('sessions', { email, cpf })
-    .then(res => console.log(res))
     .catch(err => {
       alert(err.response.data.error);
     });
@@ -28,7 +27,8 @@ export default function Logon(){
       const user = response.data.user;
       
       localStorage.setItem('token', token);
-      
+      localStorage.setItem('id', user.id);
+
       alert(`Seja bem-vindo, ${user.name}!`);
 
       if (user.type === 1) history.push('/profiledoctor');
@@ -43,6 +43,7 @@ export default function Logon(){
         <form onSubmit={handleLogin}>
           <h1>Faça seu logon</h1>
           <input
+            type="email"
             placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)} 

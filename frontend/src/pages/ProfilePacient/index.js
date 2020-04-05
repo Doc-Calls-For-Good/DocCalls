@@ -1,11 +1,30 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import logoImg from '../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import { FiPower, FiArrowRight } from 'react-icons/fi';
 import './styles.css';
 
+import api from '../../services/api';
+
+
 export default function ProfilePacient(){
+  const [token, setToken] = useState('');
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+
+    async function loadDoctors() {
+      setToken(localStorage.getItem('token'));
+      setId(localStorage.getItem('id'));
+      console.log('token', token);
+      const response = await api.get('users', {
+        headers: { Authorization: `Bearer ${token}`}
+      });
+    }
+    loadDoctors();
+  }, [token]);
+
   return (
     <div className="profilepacient-container">
       <header>

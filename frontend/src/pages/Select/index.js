@@ -7,7 +7,7 @@ import logoImg from '../../assets/logo.svg';
 import paciImg from '../../assets/hospitalizacao.png';
 import medicoImg from '../../assets/medico.png';
 
-export default function Registerdoctor(){
+export default function Select(){
   return(
     <div className="register-container">
       <div className="content">
