@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2, FiArrowRight } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
-import { parseISO, format } from 'date-fns';
+import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 
 
