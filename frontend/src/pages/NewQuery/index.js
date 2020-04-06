@@ -30,11 +30,9 @@ export default function NewQuery() {
             <input placeholder="Data da Consulta" style={{ width: 300 }} />
             <input placeholder="Horário" style={{ width: 150 }} />
           </div>
-          <Link to="/profilepacient">
             <button className="button" type="submit">
               CONFIRMAR
             </button>
-          </Link>
         </form>
       </div>
     </div>

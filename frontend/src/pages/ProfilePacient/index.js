@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { FiPower, FiArrowRight } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiArrowRight } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
 
@@ -11,6 +11,7 @@ export default function ProfilePacient() {
   const [token, setToken] = useState('');
   const [name, setName] = useState('');
   const [doctors, setDoctors] = useState([]);
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     async function loadDoctors() {
@@ -23,6 +24,12 @@ export default function ProfilePacient() {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setDoctors(res.data));
+
+        await api
+          .get('appointments', {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((res) => setAppointments(res.data));
       }
     }
     loadDoctors();
@@ -42,40 +49,27 @@ export default function ProfilePacient() {
       </header>
       <h1>Consultas Agendadas</h1>
       <ul>
-        <li>
-          <strong>NOME:</strong>
-          <p>Luiza Martins Camargo</p>
+        {appointments.map((appointment) => (
+          <li key={appointment.id}>
+            <strong>NOME:</strong>
+            <p>{appointment.pacient.name}</p>
 
-          <strong>ESPECIALIDADE:</strong>
-          <p>Pediatria</p>
+            <strong>QUADRO MÉDICO DO PACIENTE:</strong>
+            <p>{appointment.info}</p>
 
-          <strong>CONSULTA AGENDADA PARA: </strong>
-          <p>10/04/2020 - 09:30</p>
+            <strong>CONSULTA AGENDADA PARA: </strong>
+            <p>{appointment.date}</p>
 
-          <strong className="strong_maior_pacient">
-            Fazer Chamada de Vídeo
-          </strong>
-          <Link to="/video">
-            <FiArrowRight size={35} color="#06728A" />
-          </Link>
-        </li>
-        <li>
-          <strong>NOME:</strong>
-          <p>Luiza Martins Camargo</p>
+            <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
+            <Link to="/video">
+              <FiArrowRight size={35} color="#06728A" />
+            </Link>
 
-          <strong>ESPECIALIDADE:</strong>
-          <p>Pediatria</p>
-
-          <strong>CONSULTA AGENDADA PARA: </strong>
-          <p>10/04/2020 - 09:30</p>
-
-          <strong className="strong_maior_pacient">
-            Fazer Chamada de Vídeo
-          </strong>
-          <Link to="/video">
-            <FiArrowRight size={35} color="#06728A" />
-          </Link>
-        </li>
+            <button type="button">
+              <FiTrash2 size={20} color="#a8a8b3" />
+            </button>
+          </li>
+        ))}
       </ul>
       <h1>Médicos Disponíveis</h1>
       <ul>
