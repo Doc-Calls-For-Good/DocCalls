@@ -1,11 +1,77 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
+import api from '../../services/api';
+
 export default function NewQuery() {
+  const [date, setDate] = useState('');
+  const [email, setEmail] = useState('');
+  const [time, setTime] = useState('');
+  const [doctorId, setDoctorId] = useState(null);
+  const [pacientId, setPacientId] = useState(null);
+  const [doctorName, setDoctorName] = useState(null);
+  const [doctorSpecialty, setDoctorSpecialty] = useState(null);
+  const [token, setToken] = useState(null);
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+      const dia = date.split('/')[0];
+      const mes = date.split('/')[1];
+      const ano = date.split('/')[2];
+      const dateStr = `${ano}-${`0${mes}`.slice(-2)}-${`0${dia}`.slice(
+        -2
+      )} ${time}:00`;
+  
+      const data = JSON.stringify({
+        date: dateStr,
+        doctor_id: doctorId,
+        pacient_id: pacientId
+      });
+
+      console.log(data);
+  
+      const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
+  
+      await api
+        .post('appointments', data, {
+          headers,
+        })
+        .then((res) => {
+          console.log(res);
+          alert('Consulta agendada com sucesso!');
+          history.goBack();
+        })
+        .catch((err) => 
+          console.log(err)
+        );
+    }
+
+  useEffect(() => {
+    async function loadDoctorInfo() {
+      const response = await api.get(`users/${doctorId}`);
+      console.log(response);
+      setDoctorName(response.data.name);
+      setDoctorSpecialty(response.data.specialty);
+    }
+    setPacientId(localStorage.getItem('id'));
+    setDoctorId(localStorage.getItem('doctorId'));
+    //setPacientId(localStorage.getItem('id'));
+    setToken(localStorage.getItem('token'));
+
+    if (doctorId) {
+      loadDoctorInfo();
+    }
+  }, [doctorId]);
+  
   return (
     <div className="new-query">
       <div className="content">
@@ -19,16 +85,26 @@ export default function NewQuery() {
             Voltar para o home
           </Link>
         </section>
-        <form>
+        <form onSubmit={handleSubmit}>
           <p>
-            <strong>Nome do Médico:</strong> Luiza Martins Camargo
+            <strong>Nome do Médico:</strong> {doctorName}
           </p>
           <p>
-            <strong>Especialidade Médica:</strong> Pediatria
+            <strong>Especialidade Médica:</strong> {doctorSpecialty}
           </p>
           <div className="input-group">
-            <input placeholder="Data da Consulta" style={{ width: 300 }} />
-            <input placeholder="Horário" style={{ width: 150 }} />
+          <input
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              placeholder="Data da Consulta"
+              style={{ width: 300 }}
+            />
+            <input
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              placeholder="Horário"
+              style={{ width: 150 }}
+            />
           </div>
             <button className="button" type="submit">
               CONFIRMAR

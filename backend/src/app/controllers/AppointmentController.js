@@ -22,18 +22,26 @@ class AppointmentController {
         },
       ],
     });
+
     return res.json(response);
   }
 
   async store(req, res) {
-    const exists = await Appointment.findOne({
+    console.log('before error');
+    console.log('req.body.doctor_id', req.body.doctor_id);
+    console.log('req.body.pacient_id', req.body.pacient_id);
+    const exists = await Appointment.findAll({
       where: {
         date: req.body.date,
         [Op.or]: [{ id: req.body.doctor_id }, { id: req.body.pacient_id }],
       },
     });
+    console.log('req.body.date->',req.body.date);
+    console.log('req.body.doctor_id->',req.body.doctor_id);
+    console.log('req.body.pacient_id->',req.body.pacient_id);
+    console.log(exists);
 
-    if (exists) {
+    if (exists.length > 0) {
       return res
         .status(401)
         .json({ error: 'Já existe uma consulta agendada para esta data.' });
@@ -73,7 +81,6 @@ class AppointmentController {
       },
     });
 
-    console.log(req.body.date);
     const formattedDate = format(
       parseISO(req.body.date), 
       "'dia' dd 'de' MMMM', às ' HH:mm'h'",

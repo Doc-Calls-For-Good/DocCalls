@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2, FiArrowRight } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
+import { format } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR';
 
 import api from '../../services/api';
 
@@ -54,7 +56,9 @@ export default function ProfileDoctor() {
             <p>{appointment.info}</p>
 
             <strong>CONSULTA AGENDADA PARA: </strong>
-            <p>{appointment.date}</p>
+            <p>{format(Date.parse(appointment.date), 
+                  "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+                  { locale: pt })}</p>
 
             <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
             <Link to="/video">

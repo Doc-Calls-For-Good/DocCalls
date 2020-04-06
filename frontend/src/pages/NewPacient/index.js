@@ -52,12 +52,13 @@ export default function NewPacient() {
       .post('appointments', data, {
         headers,
       })
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         alert('Consulta agendada com sucesso!');
         history.back();
       })
-      .catch(() =>
-        alert('Não foi possível realizar o agendamento de uma nova consulta')
+      .catch((err) => 
+        alert(err.response.data.error)
       );
   }
 

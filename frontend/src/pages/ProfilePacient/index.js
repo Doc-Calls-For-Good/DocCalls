@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2, FiArrowRight } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
+import { parseISO, format } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR';
+
 
 import api from '../../services/api';
 
@@ -14,9 +17,11 @@ export default function ProfilePacient() {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    async function loadDoctors() {
+    async function load() {
       setToken(localStorage.getItem('token'));
       setName(localStorage.getItem('name'));
+
+      console.log('CARALHO');
 
       if (token) {
         await api
@@ -24,15 +29,15 @@ export default function ProfilePacient() {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setDoctors(res.data));
-
-        await api
+          console.log('dfsd');
+        const aaa = await api
           .get('appointments', {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setAppointments(res.data));
       }
     }
-    loadDoctors();
+    load();
   }, [token]);
 
   return (
@@ -58,7 +63,9 @@ export default function ProfilePacient() {
             <p>{appointment.info}</p>
 
             <strong>CONSULTA AGENDADA PARA: </strong>
-            <p>{appointment.date}</p>
+            <p>{format(Date.parse(appointment.date), 
+                  "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+                  { locale: pt })}</p>
 
             <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
             <Link to="/video">
@@ -84,7 +91,9 @@ export default function ProfilePacient() {
             <strong className="strong_maior_pacient">Agendar Consulta</strong>
             <div className="link">
               <Link to="/query/new">
-                <FiArrowRight size={35} color="#06728A" />
+                <FiArrowRight onClick={() => 
+                  localStorage.setItem('doctorId', doctor.id)
+                  } size={35} color="#06728A" />
               </Link>
             </div>
           </li>

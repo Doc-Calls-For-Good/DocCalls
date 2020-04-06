@@ -3,12 +3,23 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
-    const query = {};
-    if (req.query.type) query.type = req.query.type;
-    if (req.query.email) query.email = req.query.email;
-    if (query) {
+    if (req.query.type) {
+      const response = await User.findAll({
+        where: {
+          type: req.query.type
+        },
+      });
+      if (!response) {
+        return res.status(401).json({ error: 'Usuário não cadastrado.' });
+      }
+      return res.json(response);
+    }
+    if (req.query.email) {
+      
       const response = await User.findOne({
-        where: query,
+        where: {
+          email: req.query.email
+        },
       });
       if (!response) {
         return res.status(401).json({ error: 'Usuário não cadastrado.' });
