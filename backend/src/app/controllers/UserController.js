@@ -7,11 +7,13 @@ class UserController {
     if (req.query.type) query.type = req.query.type;
     if (req.query.email) query.email = req.query.email;
     if (query) {
-      return res.json(
-        await User.findAll({
-          where: query,
-        })
-      );
+      const response = await User.findOne({
+        where: query,
+      });
+      if (!response) {
+        return res.status(401).json({ error: 'Usuário não cadastrado.' });
+      }
+      return res.json(response);
     }
     return res.json(await User.findAll());
   }
