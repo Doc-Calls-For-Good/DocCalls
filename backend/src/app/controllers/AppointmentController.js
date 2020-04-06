@@ -1,4 +1,5 @@
-import { parseISO } from 'date-fns';
+import { parseISO, format } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR';
 import { Op } from 'sequelize';
 import nodemailer from 'nodemailer';
 import Appointment from '../models/Appointment';
@@ -12,12 +13,12 @@ class AppointmentController {
         {
           model: User,
           as: 'doctor',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'email'],
         },
         {
           model: User,
           as: 'pacient',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'email'],
         },
       ],
     });
@@ -25,7 +26,6 @@ class AppointmentController {
   }
 
   async store(req, res) {
-    console.log(req.data);
     const exists = await Appointment.findOne({
       where: {
         date: req.body.date,
@@ -38,9 +38,29 @@ class AppointmentController {
         .status(401)
         .json({ error: 'Já existe uma consulta agendada para esta data.' });
     }
-    console.log('passou do esquema');
 
     const result = await Appointment.create(req.body);
+
+    const getAppointment = await Appointment.findByPk(result.id, {
+      attributes: ['id', 'date', 'info'],
+      include: [
+        {
+          model: User,
+          as: 'doctor',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: User,
+          as: 'pacient',
+          attributes: ['id', 'name', 'email'],
+        },
+      ],
+    });
+
+    const emailPacient = getAppointment.pacient.email;
+    const namePacient = getAppointment.pacient.name;
+    const emailDoctor = getAppointment.doctor.email;
+    const nameDoctor = getAppointment.doctor.name;
 
     const transporter = nodemailer.createTransport({
       adress: 'smtp.mailtrap.io',
@@ -53,17 +73,24 @@ class AppointmentController {
       },
     });
 
-    const info = await transporter.sendMail({
-      from: '"Alex " <foo@example.com>', // sender address
-      to: 'bar@example.com, baz@example.com', // list of receivers
-      subject: 'Nova consulta', // Subject line
-      text: `Foi cadastrado uma nova consulta para o dia ${req.body.date} `, // plain text body
-      html: '<b>Hello world?</b>', // html body
-    });
-    console.log('Message sent: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    console.log(req.body.date);
+    const formattedDate = format(
+      parseISO(req.body.date), 
+      "'dia' dd 'de' MMMM', às ' HH:mm'h'",
+      { locale: pt }
+    );
 
-    return res.json(result);
+    const mailMessage = `Foi cadastrado uma nova consulta para o ${formattedDate}`;
+
+    await transporter.sendMail({
+      from: `"${nameDoctor}" <${emailDoctor}>`, // sender address
+      to: emailPacient, // list of receivers
+      subject: 'Nova consulta', // Subject line
+      text: mailMessage, // plain text body
+      html: `<b>${mailMessage}</b>`, // html body
+    });
+
+    return res.json(getAppointment);
   }
 
   async update(req, res) {
