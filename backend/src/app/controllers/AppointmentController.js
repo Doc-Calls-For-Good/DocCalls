@@ -87,7 +87,8 @@ class AppointmentController {
       { locale: pt }
     );
 
-    const mailMessage = `Foi cadastrado uma nova consulta para o ${formattedDate}`;
+    const mailMessage = `<p>Olá <strong>${namePacient}</strong> nossa consulta foi agendada, no ${formattedDate}, anota aí para não esquecer.</p><p>Se tiver alguma dúvida, só responder esse email que te ajudo ou se preferir também pode me ligar. Abraços do seu amigo e médico</p><h2>Dr ${nameDoctor}</h2>`;
+
 
     await transporter.sendMail({
       from: `"${nameDoctor}" <${emailDoctor}>`, // sender address

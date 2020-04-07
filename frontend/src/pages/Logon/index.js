@@ -28,6 +28,7 @@ export default function Logon() {
         else history.push('/profilepacient');
       })
       .catch((err) => {
+        console.log(err);
         setEmail('');
         setCpf('');
         setMessageError(err.response.data.error);

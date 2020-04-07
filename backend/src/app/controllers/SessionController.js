@@ -8,7 +8,7 @@ class SessionController {
     const user = await User.findOne({ where: { email, cpf } });
 
     if (!user) {
-      return res.status(401).json({ error: 'Usuário não encontrado.' });
+      return res.status(401).json({ error: 'Dados incorretos, não foi possível realizar o login.' });
     }
 
     const { id, name, type } = user;
