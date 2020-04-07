@@ -61,13 +61,11 @@ export default function ProfileDoctor() {
                   { locale: pt })}</p>
 
             <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
-            <Link to="/video">
-              <FiArrowRight size={35} color="#06728A" />
-            </Link>
-
-            <button type="button">
-              <FiTrash2 size={20} color="#a8a8b3" />
-            </button>
+            <div className="link">
+              <Link to="/video">
+                <FiArrowRight size={35} color="#06728A" />
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
