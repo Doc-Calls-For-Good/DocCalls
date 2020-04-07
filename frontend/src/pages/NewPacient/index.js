@@ -55,7 +55,7 @@ export default function NewPacient() {
       .then((res) => {
         console.log(res);
         alert('Consulta agendada com sucesso!');
-        history.back();
+        history.goBack();
       })
       .catch((err) => 
         alert(err.response.data.error)

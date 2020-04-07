@@ -87,7 +87,7 @@ class AppointmentController {
       { locale: pt }
     );
 
-    const mailMessage = `<p>Olá <strong>${namePacient}</strong> nossa consulta foi agendada, no ${formattedDate}, anota aí para não esquecer.</p><p>Se tiver alguma dúvida, só responder esse email que te ajudo ou se preferir também pode me ligar. Abraços do seu amigo e médico</p><h2>Dr ${nameDoctor}</h2>`;
+    const mailMessage = `<p><h2>Olá ${namePacient}</h2></p><p>Nossa consulta foi agendada no ${formattedDate}, anota aí para não esquecer.</p><p>Se tiver alguma dúvida, só responder esse email que te ajudo ou se preferir também pode me ligar.<br/> Abraços do seu amigo e médico</p><h3>Dr ${nameDoctor}</h3>`;
 
 
     await transporter.sendMail({
@@ -95,7 +95,7 @@ class AppointmentController {
       to: emailPacient, // list of receivers
       subject: 'Nova consulta', // Subject line
       text: mailMessage, // plain text body
-      html: `<b>${mailMessage}</b>`, // html body
+      html: `${mailMessage}`, // html body
     });
 
     return res.json(getAppointment);
