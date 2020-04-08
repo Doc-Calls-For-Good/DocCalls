@@ -13,6 +13,7 @@ import api from '../../services/api';
 export default function ProfilePacient() {
   const [token, setToken] = useState('');
   const [name, setName] = useState('');
+  const [id, setId] = useState('');
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
 
@@ -20,6 +21,7 @@ export default function ProfilePacient() {
     async function load() {
       setToken(localStorage.getItem('token'));
       setName(localStorage.getItem('name'));
+      setId(localStorage.getItem('id'));
 
       console.log('CARALHO');
 
@@ -30,8 +32,8 @@ export default function ProfilePacient() {
           })
           .then((res) => setDoctors(res.data));
           console.log('dfsd');
-        const aaa = await api
-          .get('appointments', {
+        await api
+          .get(`appointments/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setAppointments(res.data));
