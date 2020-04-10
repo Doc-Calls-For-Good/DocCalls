@@ -7,7 +7,6 @@ const App = () => {
       <main>
         <Routes />
       </main>
-
     </div>
   );
 };

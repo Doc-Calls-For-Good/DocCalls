@@ -23,9 +23,11 @@ export default function RegisterPacient() {
 
     const response = await api
       .post('users', data)
+      // eslint-disable-next-line no-alert
       .catch((err) => alert(err.response.data.error));
 
     if (response) {
+      // eslint-disable-next-line no-alert
       alert('Cadastro realizado com sucesso.');
       history.push('/');
     }

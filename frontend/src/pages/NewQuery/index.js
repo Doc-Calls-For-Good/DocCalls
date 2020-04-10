@@ -9,7 +9,6 @@ import api from '../../services/api';
 
 export default function NewQuery() {
   const [date, setDate] = useState('');
-  const [email, setEmail] = useState('');
   const [time, setTime] = useState('');
   const [doctorId, setDoctorId] = useState(null);
   const [pacientId, setPacientId] = useState(null);
@@ -21,57 +20,52 @@ export default function NewQuery() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-      const dia = date.split('/')[0];
-      const mes = date.split('/')[1];
-      const ano = date.split('/')[2];
-      const dateStr = `${ano}-${`0${mes}`.slice(-2)}-${`0${dia}`.slice(
-        -2
-      )} ${time}:00`;
-  
-      const data = JSON.stringify({
-        date: dateStr,
-        doctor_id: doctorId,
-        pacient_id: pacientId
-      });
+    const dia = date.split('/')[0];
+    const mes = date.split('/')[1];
+    const ano = date.split('/')[2];
+    const dateStr = `${ano}-${`0${mes}`.slice(-2)}-${`0${dia}`.slice(
+      -2
+    )} ${time}:00`;
 
-      console.log(data);
-  
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
-  
-      await api
-        .post('appointments', data, {
-          headers,
-        })
-        .then((res) => {
-          console.log(res);
-          alert('Consulta agendada com sucesso!');
-          history.goBack();
-        })
-        .catch((err) => 
-          console.log(err)
-        );
-    }
+    const data = JSON.stringify({
+      date: dateStr,
+      doctor_id: doctorId,
+      pacient_id: pacientId,
+    });
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+
+    await api
+      .post('appointments', data, {
+        headers,
+      })
+      .then(() => {
+        // eslint-disable-next-line no-alert
+        alert('Consulta agendada com sucesso!');
+        history.goBack();
+      })
+      // eslint-disable-next-line no-alert
+      .catch((err) => alert(err));
+  }
 
   useEffect(() => {
     async function loadDoctorInfo() {
       const response = await api.get(`users/${doctorId}`);
-      console.log(response);
       setDoctorName(response.data.name);
       setDoctorSpecialty(response.data.specialty);
     }
     setPacientId(localStorage.getItem('id'));
     setDoctorId(localStorage.getItem('doctorId'));
-    //setPacientId(localStorage.getItem('id'));
     setToken(localStorage.getItem('token'));
 
     if (doctorId) {
       loadDoctorInfo();
     }
   }, [doctorId]);
-  
+
   return (
     <div className="new-query">
       <div className="content">
@@ -93,7 +87,7 @@ export default function NewQuery() {
             <strong>Especialidade Médica:</strong> {doctorSpecialty}
           </p>
           <div className="input-group">
-          <input
+            <input
               value={date}
               onChange={(e) => setDate(e.target.value)}
               placeholder="Data da Consulta"
@@ -106,9 +100,9 @@ export default function NewQuery() {
               style={{ width: 150 }}
             />
           </div>
-            <button className="button" type="submit">
-              CONFIRMAR
-            </button>
+          <button className="button" type="submit">
+            CONFIRMAR
+          </button>
         </form>
       </div>
     </div>

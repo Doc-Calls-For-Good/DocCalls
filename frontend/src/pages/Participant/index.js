@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "./styles.css";
+import './styles.css';
 
 const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([]);
@@ -8,27 +8,28 @@ const Participant = ({ participant }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
-  const trackpubsToTracks = trackMap => Array.from(trackMap.values())
-    .map(publication => publication.track)
-    .filter(track => track !== null);
+  const trackpubsToTracks = (trackMap) =>
+    Array.from(trackMap.values())
+      .map((publication) => publication.track)
+      .filter((track) => track !== null);
 
   useEffect(() => {
     setVideoTracks(trackpubsToTracks(participant.videoTracks));
     setAudioTracks(trackpubsToTracks(participant.audioTracks));
 
-    const trackSubscribed = track => {
+    const trackSubscribed = (track) => {
       if (track.kind === 'video') {
-        setVideoTracks(videoTracks => [...videoTracks, track]);
+        setVideoTracks((videoTracks) => [...videoTracks, track]);
       } else {
-        setAudioTracks(audioTracks => [...audioTracks, track]);
+        setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
     };
 
-    const trackUnsubscribed = track => {
+    const trackUnsubscribed = (track) => {
       if (track.kind === 'video') {
-        setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
+        setVideoTracks((videoTracks) => videoTracks.filter((v) => v !== track));
       } else {
-        setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
+        setAudioTracks((audioTracks) => audioTracks.filter((a) => a !== track));
       }
     };
 
@@ -65,8 +66,8 @@ const Participant = ({ participant }) => {
   return (
     <div className="participant">
       <h3>{participant.identity}</h3>
-      <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={true} />
+      <video ref={videoRef} autoPlay />
+      <audio ref={audioRef} autoPlay muted />
     </div>
   );
 };

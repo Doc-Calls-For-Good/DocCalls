@@ -52,14 +52,13 @@ export default function NewPacient() {
       .post('appointments', data, {
         headers,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        // eslint-disable-next-line no-alert
         alert('Consulta agendada com sucesso!');
         history.goBack();
       })
-      .catch((err) => 
-        alert(err.response.data.error)
-      );
+      // eslint-disable-next-line no-alert
+      .catch((err) => alert(err.response.data.error));
   }
 
   useEffect(() => {

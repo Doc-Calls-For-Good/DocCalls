@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { FiPower, FiTrash2, FiArrowRight } from 'react-icons/fi';
-import logoImg from '../../assets/logo.svg';
+import { FiPower, FiArrowRight } from 'react-icons/fi';
 import './styles.css';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
-
+import logoImg from '../../assets/logo.svg';
 
 import api from '../../services/api';
 
@@ -23,15 +22,13 @@ export default function ProfilePacient() {
       setName(localStorage.getItem('name'));
       setId(localStorage.getItem('id'));
 
-      console.log('CARALHO');
-
       if (token) {
         await api
           .get('users?type=1', {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setDoctors(res.data));
-          console.log('dfsd');
+
         await api
           .get(`appointments/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
@@ -65,15 +62,19 @@ export default function ProfilePacient() {
             <p>{appointment.info}</p>
 
             <strong>CONSULTA AGENDADA PARA: </strong>
-            <p>{format(Date.parse(appointment.date), 
-                  "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
-                  { locale: pt })}</p>
+            <p>
+              {format(
+                Date.parse(appointment.date),
+                "'Dia' dd 'de' MMMM', às ' HH:mm'h'",
+                { locale: pt }
+              )}
+            </p>
 
             <strong className="strong_maior">Fazer Chamada de Vídeo</strong>
             <div className="link">
               <Link to="/video">
                 <FiArrowRight size={35} color="#06728A" />
-             </Link>
+              </Link>
             </div>
           </li>
         ))}
@@ -91,9 +92,11 @@ export default function ProfilePacient() {
             <strong className="strong_maior_pacient">Agendar Consulta</strong>
             <div className="link">
               <Link to="/query/new">
-                <FiArrowRight onClick={() => 
-                  localStorage.setItem('doctorId', doctor.id)
-                  } size={35} color="#06728A" />
+                <FiArrowRight
+                  onClick={() => localStorage.setItem('doctorId', doctor.id)}
+                  size={35}
+                  color="#06728A"
+                />
               </Link>
             </div>
           </li>
